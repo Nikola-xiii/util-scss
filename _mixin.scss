@@ -1,0 +1,169 @@
+//------------------------------------------------------------------------------
+// include_font
+
+@mixin include_font($name) {
+  $url: unquote('../fonts/' + $name);
+
+  @font-face {
+    font-family:$name;
+    src: url($url + '.eot');
+    src: url($url + '.eot?#iefix') format('embedded-opentype'),
+    url($url + '.woff') format('woff'),
+    url($url + '.ttf') format('truetype'),
+    url($url + '.svg#' + $name) format('svg');
+  }
+}
+
+// Mixins for Font Icons
+// ----------------------------------------------------------------------------
+
+@mixin icon($icon, $FontIcon) {
+  @include FontIcons($FontIcon);
+  content: $icon;
+}
+
+@mixin FontIcons($FontIcon) {
+  font-family: $FontIcon;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: inherit;
+  -webkit-font-smoothing: antialiased;
+  *margin-right: .3em; // fixes ie7 issues
+}
+
+//------------------------------------------------------------------------------
+
+@mixin breakpoint($point) {
+  @if $point == large {
+    @media (min-width: 64.375em) { @content; }
+  }
+  @else if $point == medium {
+    @media (min-width: 50em) { @content; }
+  }
+  @else if $point == small {
+    @media (min-width: 37.5em)  { @content; }
+  }
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+  background-clip: padding-box;  /* stops bg color from leaking outside the border: */
+}
+
+//------------------------------------------------------------------------------
+// BG opacity
+
+@mixin background-opacity($color, $opacity: 0.3) {
+  background: $color; /* The Fallback */
+  background: rgba($color, $opacity) !important;
+}
+
+//------------------------------------------------------------------------------
+// Links
+
+@mixin links( $color, $hover) {
+  a {
+    color: $color;
+    &:hover {
+      color: $hover;
+    }
+    @content;
+  }
+}
+
+//------------------------------------------------------------------------------
+// Box-Shadow
+
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+  @if $inset {
+    -webkit-box-shadow:inset $top $left $blur $color;
+    -moz-box-shadow:inset $top $left $blur $color;
+    box-shadow:inset $top $left $blur $color;
+  } @else {
+    -webkit-box-shadow: $top $left $blur $color;
+    -moz-box-shadow: $top $left $blur $color;
+    box-shadow: $top $left $blur $color;
+  }
+}
+
+@mixin center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin abs-pos ($top: auto, $right: auto, $bottom: auto, $left: auto) {
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+  position: absolute;
+}
+
+@mixin vertical-align-block ($size){
+  position: absolute;
+  top: 50%;
+  left: 350px;
+  margin-top: -$size/2;
+}
+
+@mixin block_rotate ($deg) {
+  -moz-transform: rotate($deg);
+  -ms-transform: rotate($deg);
+  -webkit-transform: rotate($deg);
+  transform: rotate($deg);
+}
+
+//------------------------------------------------------------------------------
+// Psevdo Element
+
+@mixin psevdo-el($type, $h:auto, $w:auto) {
+  &:#{$type} {
+    content: '';
+    display: block;
+    width: $w;
+    height: $h;
+    @content
+  }
+}
+//------------------------------------------------------------------------------
+// Special mixin
+
+@mixin arrow-element($sprite, $x, $y) {
+  &:after {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    background: transparent url($sprite) no-repeat $x $y;
+    width: 14px;
+    height: 14px;
+    @content;
+  }
+}
+
+//------------------------------------------------------------------------------
+// All style mixin
+
+@mixin reset-style-all() {
+  /* Box-model */
+  display: block;
+  float: none;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+
+  /* Typography */
+  font: normal 13px "Helvetica Neue", sans-serif;
+  line-height: 1.5;
+  color: #333;
+  text-align: center;
+
+  /* Visual */
+  border: 0 none;
+  border-radius: 0;
+
+  /* Misc */
+  opacity: 1;
+}
