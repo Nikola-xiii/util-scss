@@ -1,0 +1,40 @@
+$susy: (
+  flow: ltr, // ltr (left-to-right), rtl (right-to-left)
+  output: float, // float | isolate
+  math: fluid, // fluid | static
+  column-width: false, // false | true
+  container: 1440px, // lenght or % | auto
+  container-position: center, // position, <lenght>
+  last-flow: to, // from, to
+  columns: 12,
+  gutters: 1/4,
+  gutters-position: after, // before | after | split | inside | inside-static
+  global-box-sizing: content-box, // border-box | content-box
+  debug: (
+    image: show, // show
+    color: rgba(#000, .40),
+    output: background, // background | overlay
+    toggle: top right,
+  )
+);
+
+// Laptop Grid
+$list-laptop: (
+  columns: 12,
+  gutters: 1/3,
+  gutter-position: after,
+);
+
+// Tablet Grid
+$list-tablet: (
+  columns: 12,
+  gutters: 1/2,
+  gutter-position: after,
+);
+
+// Mobile Grid
+$list-mobile: (
+  columns: 12,
+  gutters: 0,
+  gutter-position: after,
+);
