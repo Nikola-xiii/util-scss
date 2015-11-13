@@ -197,3 +197,13 @@
   /* Good browsers especially the best of the world browser Firefox */
   opacity: $opacity;
 }
+
+//Element PLACEHOLDER
+@mixin placeholder {
+  
+  &::-webkit-input-placeholder {@content}
+  &:-moz-placeholder           {@content}
+  &::-moz-placeholder          {@content}
+  &:-ms-input-placeholder      {@content}
+  
+}
