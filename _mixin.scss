@@ -167,3 +167,43 @@
   /* Misc */
   opacity: 1;
 }
+
+//no select 
+@mixin noSelect
+{
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+//Element opacity
+@mixin opacity($opacity)
+{
+  /* IE 8 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+($opacity*100);
+
+  /* IE 5-7 */
+  filter: alpha(opacity=($opacity*100));
+
+  /* Netscape */
+  -moz-opacity: $opacity;
+
+  /* Safari 1.x */
+  -khtml-opacity: $opacity;
+
+  /* Good browsers especially the best of the world browser Firefox */
+  opacity: $opacity;
+}
+
+//Element PLACEHOLDER
+@mixin placeholder {
+  
+  &::-webkit-input-placeholder {@content}
+  &:-moz-placeholder           {@content}
+  &::-moz-placeholder          {@content}
+  &:-ms-input-placeholder      {@content}
+  
+}
